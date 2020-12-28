@@ -85,7 +85,7 @@ export const constantRoutes = [
     meta: { title: '讲师管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
+        path: 'list',
         name: '讲师列表',
         component: () => import('@/views/edu/teacher/list'),
         meta: { title: '讲师列表', icon: 'table' }
@@ -95,6 +95,13 @@ export const constantRoutes = [
         name: '讲师新增',
         component: () => import('@/views/edu/teacher/save'),
         meta: { title: '讲师新增', icon: 'tree' }
+      },
+      {
+        path: 'edit/:id',
+        name: '讲师编辑',
+        component: () => import('@/views/edu/teacher/save'),
+        meta: { title: '讲师编辑', noCache: true },
+        hidden: true // 不在页面中显示
       }
     ]
   },

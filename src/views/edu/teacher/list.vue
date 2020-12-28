@@ -60,7 +60,10 @@
       <!-- 操作 -->
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <!--修改-->
+          <!--
+          修改
+          router-link 通过路由的方式跳转到修改页面
+          -->
           <router-link :to=" '/teacher/edit/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
@@ -88,20 +91,24 @@ import teacher from '@/api/edu/teacher'
 
 export default {
   data() {
-    return { // 创建变量和初始值
-      page: 1,  // 当前页
-      limit: 5, // 每页记录数
-      total: 0, // 总记录数
-      teacherQuery: { // 条件封装对象
-
-      },
-      list: null // 查询之后接口返回的集合
+    // 创建变量和初始值
+    return {
+      // 当前页
+      page: 1,
+      // 每页记录数
+      limit: 5,
+      // 总记录数
+      total: 0,
+      // 条件封装对象
+      teacherQuery: {},
+      // 查询之后接口返回的集合
+      list: null
     }
   },
-  created() { // 在页面渲染之前，一般调用 methods 里面的方法
+  created() { //在页面渲染之前，一般调用 methods 里面的方法
     this.list = this.getList()
   },
-  methods: { // 创建具体方法，调用 teacher.js 里的方法
+  methods: { //创建具体方法，调用 teacher.js 里的方法
     // 获取讲师列表
     getList(page = 1) {
       this.page = page
@@ -111,20 +118,30 @@ export default {
           this.list = response.data.rows
           this.total = response.data.total
         })
-        .catch(error => {  // 请求失败
-          console.log(error)
-        })
     },
-    // 清空的方法
+    // 删除讲师
+    removeDataById(id) {
+      teacher.deleteTeacherId(id)
+      this.$confirm('此操作将永久删除该讲师记录, 是否继续?', '提示', {
+        confirmButtonText: '确定', // 点击确定执行 then
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 提示信息
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+        // 回到讲师列表（当前所在页）
+        this.getList(this.page)
+      })
+    },
+    // 清空查询条件方法
     resetData() {
       //表单输入项数据清空
       this.teacherQuery = {}
       //查询所有讲师数据
       this.getList()
-    },
-    // 删除讲师
-    removeDataById(id) {
-
     }
   }
 }
