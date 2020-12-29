@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function login(data) {
   return request({
     // url: '/vue-admin-template/user/login',  // 请求登录的地址
-    url: 'http://localhost:8001/eduService/user/login',
+    url: '/edu/user/login',
     method: 'post',
     data
   })
@@ -13,7 +13,7 @@ export function login(data) {
 // 获取用户信息
 export function getInfo(token) {
   return request({
-    url: 'http://localhost:8001/eduService/user/info',
+    url: '/edu/user/info',
     method: 'get',
     params: { token }
   })

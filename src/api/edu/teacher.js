@@ -6,7 +6,7 @@ export default {
   getTeacherListPage(current, limit, teacherQuery) {
     return request({
       // 使用 `` 符号，在数字键 1 旁边，而不是单引号
-      url: `http://localhost:8001/eduService/teacher/pageTeacherCondition/${current}/${limit}`,
+      url: `/edu/teacher/pageTeacherCondition/${current}/${limit}`,
       method: 'post',
       // teacherQuery：条件对象，后端使用 RequestBody 来获取数据（json）
       // data 表示把对象转换为 json 传递到后端接口里
@@ -17,7 +17,7 @@ export default {
   // 2. 删除讲师
   deleteTeacherId(id) {
     return request({
-      url: `http://localhost:8001/eduService/teacher/deleteTeacher/${id}`,
+      url: `/edu/teacher/deleteTeacher/${id}`,
       method: 'delete'
     })
   },
@@ -25,7 +25,7 @@ export default {
   // 3. 讲师添加
   addTeacher(teacher) {
     return request({
-      url: `http://localhost:8001/eduService/teacher/addTeacher`,
+      url: `/edu/teacher/addTeacher`,
       method: 'post',
       data: teacher
     })
@@ -34,7 +34,7 @@ export default {
   // 4. 根据 id 查询讲师
   getTeacherInfo(id) {
     return request({
-      url: `http://localhost:8001/eduService/teacher/getTeacher/${id}`,
+      url: `/edu/teacher/getTeacher/${id}`,
       method: 'get'
     })
   },
@@ -42,7 +42,7 @@ export default {
   // 5. 修改讲师
   editTeacher(teacher) {
     return request({
-      url: `http://localhost:8001/eduService/teacher/editTeacher`,
+      url: `/edu/teacher/editTeacher`,
       method: 'put',
       data: teacher
     })

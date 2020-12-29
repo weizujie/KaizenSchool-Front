@@ -96,7 +96,7 @@ export default {
       // 当前页
       page: 1,
       // 每页记录数
-      limit: 5,
+      limit: 10,
       // 总记录数
       total: 0,
       // 条件封装对象
